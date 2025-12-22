@@ -27,18 +27,23 @@ class MyApp extends StatelessWidget {
 }
 
 class BasicWidgetDemo extends StatelessWidget {
+  const BasicWidgetDemo({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Basic Widget Demo')),
-      body: Container(
-        width: 100,
-        height: 200,
-        child: Text(
-          'Hello Flutter',
-          style: TextStyle(
-            fontSize: 30,
-          ), // Default is true. Set false to force single line.
+    return Center(
+      child: ClipRRect(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24.0)),
+        /* borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(24.0),
+          topRight: Radius.circular(24.0),
+        ),*/
+        //  borderRadius: BorderRadius.circular(24.0), // all corners
+        child: Image.network(
+          'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg',
+          width: 200,
+          height: 200,
+          fit: BoxFit.cover,
         ),
       ),
     );
