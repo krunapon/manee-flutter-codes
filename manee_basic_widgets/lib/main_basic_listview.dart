@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
-import 'models/faculty.dart';
+
+import '../models/faculty.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    home: FacultyListExample(),
-    debugShowCheckedModeBanner: false,
-  ));
+  runApp(
+    MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.deepPurple,
+          foregroundColor: Colors.white,
+        ),
+      ),
+      home: const FacultyListExample(),
+      debugShowCheckedModeBanner: false,
+    ),
+  );
 }
 
 class FacultyListExample extends StatelessWidget {
@@ -32,34 +43,30 @@ class FacultyListExample extends StatelessWidget {
   Widget build(BuildContext context) {
     // Create our list of faculties
     final List<Faculty> faculties = [
-      const Faculty(
-        name: "Engineering",
-        code: "EN",
-        icon: Icons.engineering,
-      ),
-      const Faculty(
-        name: "Agriculture",
-        code: "AG",
-        icon: Icons.agriculture,
-      ),
-      const Faculty(
-        name: "Architecture",
-        code: "AR",
-        icon: Icons.architecture,
-      ),
+      const Faculty(name: "Engineering", code: "EN", icon: Icons.engineering),
+      const Faculty(name: "Agriculture", code: "AG", icon: Icons.agriculture),
+      const Faculty(name: "Architecture", code: "AR", icon: Icons.architecture),
     ];
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Faculty List'),
+        backgroundColor: Colors.deepPurple,
+        foregroundColor: Colors.white,
       ),
       body: ListView(
         padding: const EdgeInsets.all(8.0),
         children: faculties.map((faculty) {
           return ListTile(
             leading: Icon(faculty.icon),
-            title: Text(faculty.name),
-            subtitle: Text('Code: ${faculty.code}'),
+            title: Text(
+              faculty.name,
+              style: TextStyle(fontSize: 30, color: Colors.deepPurpleAccent),
+            ),
+            subtitle: Text(
+              'Code: ${faculty.code}',
+              style: TextStyle(fontSize: 20, color: Colors.blueAccent),
+            ),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () => _handleFacultyTap(context, faculty),
           );
