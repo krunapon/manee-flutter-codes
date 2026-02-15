@@ -13,15 +13,14 @@ class TaskListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tasks'),
-      ),
+      appBar: AppBar(title: const Text('Tasks')),
       body: ListView.separated(
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(tasks[index]['title'],
-                style:
-                    const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+            title: Text(
+              tasks[index]['title'],
+              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            ),
             trailing: _getPriorityIcon(tasks[index]['priority']),
           );
         },
