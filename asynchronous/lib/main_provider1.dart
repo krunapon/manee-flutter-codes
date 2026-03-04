@@ -7,7 +7,6 @@ void main() {
 
 class MyMainApp extends StatelessWidget {
   const MyMainApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -21,7 +20,6 @@ class MyMainApp extends StatelessWidget {
 // ChangeNotifier class to manage state
 class Counter with ChangeNotifier {
   int count = 0;
-
   void increment() {
     count++;
     notifyListeners(); // Notify listeners about the change
@@ -52,36 +50,48 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final counter =
-        Provider.of<Counter>(context); // access the Counter instance
+    final counter = Provider.of<Counter>(
+      context,
+    ); // access the Counter instance
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Provider Demo'),
+      appBar: AppBar(title: const Text('Provider Demo')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Count: ${counter.count}',
+              style: const TextStyle(
+                decoration: TextDecoration.none,
+                fontSize: 40,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () => counter.increment(),
+              child: const Text(
+                'Increment',
+                style: TextStyle(
+                  decoration: TextDecoration.none,
+                  fontSize: 20,
+                  color: Colors.blueAccent,
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () => counter.reset(),
+              child: const Text(
+                'Reset',
+                style: TextStyle(
+                  decoration: TextDecoration.none,
+                  fontSize: 20,
+                  color: Colors.orange,
+                ),
+              ),
+            ),
+          ],
         ),
-        body: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-              Text('Count: ${counter.count}',
-                  style: const TextStyle(
-                      decoration: TextDecoration.none, fontSize: 40)),
-              ElevatedButton(
-                onPressed: () => counter.increment(),
-                child: const Text('Increment',
-                    style: TextStyle(
-                        decoration: TextDecoration.none,
-                        fontSize: 20,
-                        color: Colors.blueAccent)),
-              ),
-              ElevatedButton(
-                onPressed: () => counter.reset(),
-                child: const Text('Reset',
-                    style: TextStyle(
-                        decoration: TextDecoration.none,
-                        fontSize: 20,
-                        color: Colors.orange)),
-              ),
-            ])));
+      ),
+    );
   }
 }
